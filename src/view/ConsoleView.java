@@ -8,6 +8,9 @@ import java.util.Scanner;
 
 public class ConsoleView {
 
+    private static final String LINE_CHARACTER = "~";
+    private static final int LINE_SIZE = 11;
+
     protected final GameController gameController;
 
     private final static Scanner scanner = new Scanner(System.in);
@@ -34,6 +37,7 @@ public class ConsoleView {
     public void showBoard() {
         for (int i = 0; i < 3; i++) {
             showBoardLine(i);
+            showBoardLine(LINE_SIZE);
         }
     }
 

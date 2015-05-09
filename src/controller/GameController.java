@@ -10,17 +10,11 @@ public class GameController {
     private static final int PLAYERS_COUNT = 2;
 
     private final String gameName;
-
-    public Board getBoard() {
-        return board;
-    }
-
     private final Board board;
-
     private Player[] players = new Player[PLAYERS_COUNT];
 
-    public GameController(final String gameName, final Player players, final Board board) {
-        //this.players = players;
+    public GameController(final String gameName, final Player[] players, final Board board) {
+        this.players = players;
         this.board = board;
 
         if (gameName == null || gameName.isEmpty()){
@@ -36,6 +30,10 @@ public class GameController {
 
     public Player currentPlayer() {
         return null;
+    }
+
+    public Board getBoard() {
+        return board;
     }
 
     public boolean move(final int x, final int y) {
