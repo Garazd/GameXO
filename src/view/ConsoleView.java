@@ -13,8 +13,6 @@ public class ConsoleView {
 
     protected final GameController gameController;
 
-    private final static Scanner scanner = new Scanner(System.in);
-
     public ConsoleView(final GameController gameController) {
         assert gameController != null;
         this.gameController = gameController;
@@ -37,11 +35,11 @@ public class ConsoleView {
     public void showBoard() {
         for (int i = 0; i < 3; i++) {
             showBoardLine(i);
-            showBoardLine(LINE_SIZE);
+            showLine(LINE_SIZE);
         }
     }
 
-    private void showPlayers() {
+    public void showPlayers() {
         for (Player player : gameController.getPlayers()){
             System.out.println(player.getName());
         }
@@ -51,6 +49,14 @@ public class ConsoleView {
         for (int i = 0; i < row; i++) {
             System.out.print(gameController.getBoard().getFigures(row, i));
         }
+        System.out.println();
+    }
+
+    protected void showLine (final int sise) {
+        for (int i = 0; i < sise; i++) {
+            System.out.print(LINE_CHARACTER);
+        }
+        System.out.println();
     }
 
     private int getCoordinate(final String coordinateName) {
