@@ -11,8 +11,12 @@ public class Figure {
         this.figure = figure;
     }
 
+    public String getFigure() {
+        return figure;
+    }
+
     @Override
     public String toString() {
-        return figure;
+        return this.figure;
     }
 }
