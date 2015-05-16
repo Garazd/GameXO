@@ -9,8 +9,8 @@ public class Main {
 
         final Board board = new Board();
         final Player[] players = new Player[2];
-        players[0] = new Player("Vitaliy", "figureX");
-        players[1] = new Player("Oleg", "figureO");
+        //players[0] = new Player("Vitaliy", "figureX");
+        //players[1] = new Player("Oleg", "figureO");
 
         final GameController game = new GameController("string for the name of the game", players,  board);
         final ConsoleView consoleView = new ConsoleView(game);
