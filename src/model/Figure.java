@@ -1,10 +1,12 @@
 package model;
 
-public class Figure {
+public enum Figure {
+
+    X("X"),O("O");
 
     private final String figure;
 
-    public Figure(final String figure) {
+    Figure(final String figure) {
         assert figure != null;
 
         this.figure = figure;
@@ -12,10 +14,5 @@ public class Figure {
 
     public String getFigure() {
         return figure;
-    }
-
-    @Override
-    public String toString() {
-        return this.figure;
     }
 }
