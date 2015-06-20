@@ -3,22 +3,22 @@ package model;
 public class Player {
 
     private final String name;
-    //private final Figure figure;
+    private final Figure figure;
 
-    public Player(final String name, final String figure) {
+    public Player(final String name, final Figure figure) {
 
         assert name != null;
         assert figure != null;
 
         this.name = name;
-        //this.figure = figure;
+        this.figure = figure;
     }
 
     public String getName() {
         return name;
     }
 
-    //public Figure getFigure() {
-    //    return figure;
-    //}
+    public Figure getFigure() {
+        return figure;
+    }
 }
