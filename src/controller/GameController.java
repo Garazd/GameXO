@@ -87,17 +87,18 @@ public class GameController {
         return board;
     }
 
-    public static boolean move(final int x, final int y, final Board board, final Figure figure) {
+    public static boolean move(final int x, final int y, final Board board, final Figure figure)
+        throws FieldNotEmptyExeption, InvalidCoordinateExeption {
 
         assert x >= 0;
         assert y >= 0;
 
         if (!CoordinateHelper.checkCoordinate(x) || !CoordinateHelper.checkCoordinate(y)) {
-            return false;
+            throw new InvalidCoordinateExeption;
         }
 
         if (board.getFigure(x, y) == null) {
-            return false;
+            throw new FieldNotEmptyExeption;
         }
 
         board.setFigure(x, y, figure);
