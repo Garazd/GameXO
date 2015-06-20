@@ -1,5 +1,7 @@
 package controller;
 
+import controller.exeption.FieldNotEmptyException;
+import controller.exeption.InvalidCoordinateException;
 import helpers.CoordinateHelper;
 import model.Board;
 import model.Figure;
@@ -88,21 +90,32 @@ public class GameController {
     }
 
     public static boolean move(final int x, final int y, final Board board, final Figure figure)
-        throws FieldNotEmptyExeption, InvalidCoordinateExeption {
+        throws FieldNotEmptyException, InvalidCoordinateException {
 
         assert x >= 0;
         assert y >= 0;
 
         if (!CoordinateHelper.checkCoordinate(x) || !CoordinateHelper.checkCoordinate(y)) {
-            throw new InvalidCoordinateExeption;
+            throw new InvalidCoordinateException();
         }
 
         if (board.getFigure(x, y) == null) {
-            throw new FieldNotEmptyExeption;
+            throw new FieldNotEmptyException();
         }
 
         board.setFigure(x, y, figure);
         return true;
+    }
+
+    public void makeMove() {
+        final int x = getX();
+        final int y = getY();
+        final Board board = getBoard();
+        try {
+            move(x, y, board, Figure.O);
+        } catch (InvalidCoordinateException | FieldNotEmptyException e) {
+            e.printStackTrace();
+        }
     }
 
     public Player[] getPlayers() {
