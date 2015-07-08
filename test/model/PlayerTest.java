@@ -2,7 +2,7 @@ package model;
 
 import org.junit.Test;
 
-import static junit.framework.TestCase.assertEquals;
+import static junit.framework.Assert.assertEquals;
 
 public class PlayerTest {
 
