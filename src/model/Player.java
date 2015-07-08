@@ -6,7 +6,6 @@ public class Player {
     private final Figure figure;
 
     public Player(final String name, final Figure figure) {
-
         assert name != null;
         assert figure != null;
 
