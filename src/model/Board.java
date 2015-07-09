@@ -1,5 +1,8 @@
 package model;
 
+import model.exeptions.AlreadyOccupiedExemption;
+import model.exeptions.InvalidPointExeption;
+
 import java.awt.*;
 
 public class Board {
@@ -14,11 +17,22 @@ public class Board {
         return SIZE_FIELD;
     }
 
-    public Figure getFigure(final Point point) {
-            return figures [point.x][point.y];
+    public Figure getFigure(final Point point) throws InvalidPointExeption {
+        if (checkPoint(point)) {
+            throw new InvalidPointExeption();
+        }
+        return figures [point.x][point.y];
     }
 
-    public void setFigure(final Point point, final Figure figure) {
+    public void setFigure(final Point point, final Figure figure) throws InvalidPointExeption,
+                                                                         AlreadyOccupiedExemption {
+        if (checkPoint(point)) {
+            throw new InvalidPointExeption();
+        }
+
+        if (figures [point.x][point.y] != null) {
+            throw new AlreadyOccupiedExemption();
+        }
         figures [point.x][point.y] = figure;
     }
 
