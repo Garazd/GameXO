@@ -1,6 +1,6 @@
 package controller;
 
-import controller.exeption.FieldNotEmptyException;
+import model.exeptions.AbstractXOException;
 import controller.exeption.InvalidCoordinateException;
 import helpers.CoordinateHelper;
 import model.Board;
@@ -90,7 +90,7 @@ public class GameController {
     }
 
     public static boolean move(final int x, final int y, final Board board, final Figure figure)
-        throws FieldNotEmptyException, InvalidCoordinateException {
+        throws AbstractXOException, InvalidCoordinateException {
 
         assert x >= 0;
         assert y >= 0;
@@ -100,7 +100,7 @@ public class GameController {
         }
 
         if (board.getFigure(x, y) == null) {
-            throw new FieldNotEmptyException();
+            throw new AbstractXOException();
         }
 
         board.setFigure(x, y, figure);
@@ -113,7 +113,7 @@ public class GameController {
         final Board board = getBoard();
         try {
             move(x, y, board, Figure.O);
-        } catch (InvalidCoordinateException | FieldNotEmptyException e) {
+        } catch (InvalidCoordinateException | AbstractXOException e) {
             e.printStackTrace();
         }
     }
