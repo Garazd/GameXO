@@ -1,10 +1,6 @@
 package controller;
 
-import model.exeptions.AbstractXOException;
-import controller.exeption.InvalidCoordinateException;
-import helpers.CoordinateHelper;
 import model.Board;
-import model.Figure;
 import model.Player;
 
 public class GameController {
@@ -57,7 +53,7 @@ public class GameController {
 //        }
 //    }
 
-    public Player winner() {
+/*    public Player winner() {
         for (int i = 0; i < 3; i++) {
             if (board.getFigure(i, 0) == board.getFigure(i, 1) &&
                     board.getFigure(i, 0) == board.getFigure(i, 2)) {
@@ -83,13 +79,13 @@ public class GameController {
             return players[1];
         }
         return null;
-    }
+    }*/
 
     public Board getBoard() {
         return board;
     }
 
-    public static boolean move(final int x, final int y, final Board board, final Figure figure)
+    /*public static boolean move(final int x, final int y, final Board board, final Figure figure)
         throws AbstractXOException, InvalidCoordinateException {
 
         assert x >= 0;
@@ -105,9 +101,9 @@ public class GameController {
 
         board.setFigure(x, y, figure);
         return true;
-    }
+    }*/
 
-    public void makeMove() {
+/*    public void makeMove() {
         final int x = getX();
         final int y = getY();
         final Board board = getBoard();
@@ -116,7 +112,7 @@ public class GameController {
         } catch (InvalidCoordinateException | AbstractXOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public Player[] getPlayers() {
         return players;
