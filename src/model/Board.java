@@ -29,10 +29,6 @@ public class Board {
         if (checkPoint(point)) {
             throw new InvalidPointException();
         }
-
-        if (figures [point.x][point.y] != null) {
-            throw new AlreadyOccupiedException();
-        }
         figures [point.x][point.y] = figure;
     }
 
