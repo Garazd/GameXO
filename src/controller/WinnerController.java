@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class WinnerController {
 
-    public Figure getWinner(final Board board) {
+    public static Figure getWinner(final Board board) {
         try {
             for(int i = 0; i < 3; i++)
                 if (check(board, new Point(i, 0), p -> new Point(p.x, p.y + 1)))
