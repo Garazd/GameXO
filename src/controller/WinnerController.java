@@ -15,7 +15,7 @@ public class WinnerController {
                     return board.getFigure(new Point(i, 0));
 
             for(int i = 0; i < 3; i++)
-                if (check(board, new Point(i, 0), p -> new Point(p.x + 1, p.y)))
+                if (check(board, new Point(0, i), p -> new Point(p.x + 1, p.y)))
                     return board.getFigure(new Point(0, i));
 
             for(int i = 0; i < 3; i++)
@@ -39,12 +39,14 @@ public class WinnerController {
         final Point nextPoint = pointGenerator.next(currentPoint);
         try {
             currentFigure = board.getFigure(currentPoint);
+
+            if (currentFigure == null) return false;
+
             nextFigure = board.getFigure(nextPoint);
         } catch (final InvalidPointException e) {
             return true;
         }
 
-        if (currentFigure == null) return false;
         if (currentFigure != nextFigure) return false;
 
         return check(board, nextPoint, pointGenerator);
