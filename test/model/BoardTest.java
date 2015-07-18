@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static junit.framework.Assert.*;
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.fail;
 
 public class BoardTest {
 
