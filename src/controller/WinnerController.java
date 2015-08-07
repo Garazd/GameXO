@@ -31,9 +31,9 @@ public class WinnerController {
         return null;
     }
 
-    private boolean check(final Board board,
-                          final Point currentPoint,
-                          final IPointGenerator pointGenerator) {
+    private static boolean check(final Board board,
+                                 final Point currentPoint,
+                                 final IPointGenerator pointGenerator) {
         final Figure currentFigure;
         final Figure nextFigure;
         final Point nextPoint = pointGenerator.next(currentPoint);
