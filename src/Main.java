@@ -1,5 +1,6 @@
-import controller.GameController;
 import model.Board;
+import model.Figure;
+import model.Game;
 import model.Player;
 import view.ConsoleView;
 
@@ -9,15 +10,12 @@ public class Main {
 
         final Board board = new Board();
         final Player[] players = new Player[2];
-        //players[0] = new Player("Vitaliy", "figureX");
-        //players[1] = new Player("Oleg", "figureO");
+        players[0] = new Player("Vitaliy", Figure.X);
+        players[1] = new Player("Oleg", Figure.O);
 
-        final GameController game = new GameController("string for the name of the game", players,  board);
-        final ConsoleView consoleView = new ConsoleView(game);
-    }
+        final Game gameXO = new Game(players, board, "XO");
 
-    private static void startGame(final ConsoleView twoConsoleView) {
-        twoConsoleView.showGameName();
-        twoConsoleView.showPlayersName();
+        final ConsoleView consoleView = new ConsoleView();
+        consoleView.showBoard(gameXO);
     }
 }
