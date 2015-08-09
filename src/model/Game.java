@@ -4,9 +4,9 @@ public class Game {
 
     private static final String DEFAULT_GAME_NAME = "XO";
 
-    private Player[] players;
+    private static Player[] players;
     private final Board board;
-    private final String gameName;
+    private static String gameName;
 
     public Game(final Player[] players,
                 final Board board,
@@ -21,7 +21,7 @@ public class Game {
         }
     }
 
-    public Player[] getPlayers() {
+    public static Player[] getPlayers() {
         return players;
     }
 
@@ -29,7 +29,7 @@ public class Game {
         return board;
     }
 
-    public String getGameName() {
+    public static String getGameName() {
         return gameName;
     }
 }
