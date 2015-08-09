@@ -1,22 +1,18 @@
 package view;
 
-import controller.GameController;
-import model.Player;
+import model.Board;
+import model.Game;
+import model.exeptions.InvalidPointException;
 
+import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ConsoleView {
 
+    Board board = new Board();
     private static final String LINE_CHARACTER = "~";
     private static final int LINE_SIZE = 11;
-
-    protected final GameController gameController;
-
-    public ConsoleView(final GameController gameController) {
-        assert gameController != null;
-        this.gameController = gameController;
-    }
 
     public void start() {
         System.out.println("Pleas input coordinates: ");
@@ -25,28 +21,28 @@ public class ConsoleView {
     }
 
     public void showGameName() {
-        System.out.println(gameController.getGameName());
+        System.out.println(Game.getGameName());
     }
 
-    public void showPlayersName() {
-        System.out.println(gameController.getPlayers());
-    }
+/*    public void showPlayersName() {
+        System.out.println(Game.getPlayers());
+    }*/
 
-    public void showBoard() {
-        for (int i = 0; i < 3; i++) {
+    public void showBoard(Game gameXO) {
+        for (int i = 0; i < board.getSize(); i++) {
             showBoardLine(i);
             showLine(LINE_SIZE);
         }
     }
-
+/*
     public void showPlayers() {
         for (Player player : gameController.getPlayers()){
             System.out.println(player.getName());
         }
-    }
+    }*/
 
-    protected void showLine (final int sise) {
-        for (int i = 0; i < sise; i++) {
+    protected void showLine (final int size) {
+        for (int i = 0; i < size; i++) {
             System.out.print(LINE_CHARACTER);
         }
         System.out.println();
@@ -54,7 +50,11 @@ public class ConsoleView {
 
     private void showBoardLine(final int row) {
         for (int i = 0; i < row; i++) {
-            //System.out.print(gameController.getBoard().getFigure(row, i));
+            try {
+                System.out.print(Game.getBoard().getFigure(new Point()));
+            } catch (InvalidPointException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println();
     }
