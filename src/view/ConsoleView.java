@@ -1,7 +1,12 @@
 package view;
 
+import controller.CurrentMoveController;
+import controller.MoveController;
+import controller.WinnerController;
 import model.Board;
+import model.Figure;
 import model.Game;
+import model.exeptions.AlreadyOccupiedException;
 import model.exeptions.InvalidPointException;
 
 import java.awt.*;
@@ -10,9 +15,45 @@ import java.util.Scanner;
 
 public class ConsoleView {
 
-    Board board = new Board();
+    private final CurrentMoveController currentMoveController = new CurrentMoveController();
+    private final WinnerController winnerController = new WinnerController();
+    private final MoveController moveController = new MoveController();
+    private final Board board = new Board();
+
     private static final String LINE_CHARACTER = "~";
     private static final int LINE_SIZE = 11;
+
+    public void showBoard(Game gameXO) {
+        for (int i = 0; i < board.getSize(); i++) {
+            showBoardLine(i);
+            showLine(LINE_SIZE);
+        }
+    }
+
+    public boolean move(final Game game) {
+        final Board board = game.getField();
+        final Figure winner = winnerController.getWinner(board);
+        if (winner != null) {
+            System.out.println("Winner is: " + winner);
+            return false;
+        }
+        final Figure currentFigure = currentMoveController.currentMove(board);
+        if (currentFigure == null) {
+            System.out.println("No winner and no moves left!");
+            return false;
+        }
+        final Point point = askPoint();
+        try {
+            moveController.applyFigure(board, point, currentFigure);
+        } catch (InvalidPointException | AlreadyOccupiedException e) {
+            System.out.println("Point is invalid!");
+        }
+        return true;
+    }
+
+    private Point askPoint() {
+        return new Point(start();)
+    }
 
     public void start() {
         System.out.println("Pleas input coordinates: ");
@@ -28,12 +69,7 @@ public class ConsoleView {
         System.out.println(Game.getPlayers());
     }*/
 
-    public void showBoard(Game gameXO) {
-        for (int i = 0; i < board.getSize(); i++) {
-            showBoardLine(i);
-            showLine(LINE_SIZE);
-        }
-    }
+
 /*
     public void showPlayers() {
         for (Player player : gameController.getPlayers()){
