@@ -31,18 +31,18 @@ public class ConsoleView {
     }
 
     public boolean move(final Game game) {
-        final Board board = game.getField();
+        final Board board = game.getBoard();
         final Figure winner = winnerController.getWinner(board);
+        final Figure currentFigure = currentMoveController.currentMove(board);
+        final Point point = askPoint();
         if (winner != null) {
             System.out.println("Winner is: " + winner);
             return false;
         }
-        final Figure currentFigure = currentMoveController.currentMove(board);
         if (currentFigure == null) {
             System.out.println("No winner and no moves left!");
             return false;
         }
-        final Point point = askPoint();
         try {
             moveController.applyFigure(board, point, currentFigure);
         } catch (InvalidPointException | AlreadyOccupiedException e) {
@@ -52,13 +52,7 @@ public class ConsoleView {
     }
 
     private Point askPoint() {
-        return new Point(start();)
-    }
-
-    public void start() {
-        System.out.println("Pleas input coordinates: ");
-        int x = getCoordinate("X");
-        int y = getCoordinate("Y");
+        return new Point(getCoordinate("X"), getCoordinate("Y"));
     }
 
     public void showGameName() {
