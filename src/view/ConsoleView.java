@@ -6,6 +6,7 @@ import controller.WinnerController;
 import model.Board;
 import model.Figure;
 import model.Game;
+import model.Player;
 import model.exeptions.AlreadyOccupiedException;
 import model.exeptions.InvalidPointException;
 
@@ -63,13 +64,11 @@ public class ConsoleView {
         System.out.println(Game.getPlayers());
     }*/
 
-
-/*
     public void showPlayers() {
-        for (Player player : gameController.getPlayers()){
+        for (Player player : Game.getPlayers()){
             System.out.println(player.getName());
         }
-    }*/
+    }
 
     protected void showLine (final int size) {
         for (int i = 0; i < size; i++) {

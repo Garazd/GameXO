@@ -21,6 +21,10 @@ public class Game {
         }
     }
 
+    public static Player[] getPlayers() {
+        return players;
+    }
+
     public static Board getBoard() {
         return board;
     }
