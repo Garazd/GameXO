@@ -17,5 +17,8 @@ public class Main {
 
         final ConsoleView consoleView = new ConsoleView();
         consoleView.showBoard(gameXO);
+        while (consoleView.move(gameXO)) {
+            consoleView.showBoard(gameXO);
+        }
     }
 }
