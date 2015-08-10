@@ -24,7 +24,7 @@ public class ConsoleView {
     private static final String LINE_CHARACTER = "~";
     private static final int LINE_SIZE = 11;
 
-    public void showBoard(Game gameXO) {
+    public void showBoard(Game game) {
         for (int i = 0; i < board.getSize(); i++) {
             showBoardLine(i);
             showLine(LINE_SIZE);
@@ -60,9 +60,9 @@ public class ConsoleView {
         System.out.println(Game.getGameName());
     }
 
-/*    public void showPlayersName() {
+    public void showPlayersName() {
         System.out.println(Game.getPlayers());
-    }*/
+    }
 
     public void showPlayers() {
         for (Player player : Game.getPlayers()){
