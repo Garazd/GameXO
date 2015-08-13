@@ -19,15 +19,17 @@ public class ConsoleView {
     private final CurrentMoveController currentMoveController = new CurrentMoveController();
     private final WinnerController winnerController = new WinnerController();
     private final MoveController moveController = new MoveController();
-    private final Board board = new Board();
 
     private static final String LINE_CHARACTER = "~";
     private static final int LINE_SIZE = 11;
 
-    public void showBoard(Game game) {
+    public void show(final Game game) {
+        System.out.format("Game name: %s\n", game.getGameName());
+        final Board board = game.getBoard();
         for (int i = 0; i < board.getSize(); i++) {
-            showBoardLine(i);
-            showLine(LINE_SIZE);
+            if (i != 0)
+                printSeparator();
+            showLine(board, i);
         }
     }
 
@@ -70,7 +72,7 @@ public class ConsoleView {
         }
     }
 
-    protected void showLine (final int size) {
+    protected void showLine (final Board board, final int size) {
         for (int i = 0; i < size; i++) {
             System.out.print(LINE_CHARACTER);
         }
@@ -101,5 +103,9 @@ public class ConsoleView {
             }
         } while (counter < 3);
         return  -1;
+    }
+
+    private void printSeparator() {
+        System.out.println("~~~~~~~~~~~");
     }
 }
