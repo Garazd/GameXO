@@ -7,10 +7,10 @@ import model.Board;
 import model.Figure;
 import model.Game;
 import model.Player;
+import model.Point;
 import model.exeptions.AlreadyOccupiedException;
 import model.exeptions.InvalidPointException;
 
-import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -36,16 +36,17 @@ public class ConsoleView {
     public boolean move(final Game game) {
         final Board board = game.getBoard();
         final Figure winner = winnerController.getWinner(board);
-        final Figure currentFigure = currentMoveController.currentMove(board);
-        final Point point = askPoint();
         if (winner != null) {
             System.out.println("Winner is: " + winner);
             return false;
         }
+        final Figure currentFigure = currentMoveController.currentMove(board);
         if (currentFigure == null) {
             System.out.println("No winner and no moves left!");
             return false;
         }
+        System.out.format("Please enter move point for: %s\n", currentFigure);
+        final Point point = askPoint();
         try {
             moveController.applyFigure(board, point, currentFigure);
         } catch (InvalidPointException | AlreadyOccupiedException e) {
@@ -72,22 +73,26 @@ public class ConsoleView {
         }
     }
 
-    protected void showLine (final Board board, final int size) {
-        for (int i = 0; i < size; i++) {
-            System.out.print(LINE_CHARACTER);
-        }
-        System.out.println();
-    }
-
-    private void showBoardLine(final int row) {
-        for (int i = 0; i < row; i++) {
-            try {
-                System.out.print(Game.getBoard().getFigure(new Point()));
-            } catch (InvalidPointException e) {
-                e.printStackTrace();
+    protected String showLine (final Board board, final int y) {
+        String resultLine = "";
+        try {
+            for (int x = 0; x < board.getSize(); x++) {
+                Figure figure = null;
+                try {
+                    figure = board.getFigure(new Point(x, y));
+                } catch (final InvalidPointException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+                String leftFigureWall = (x != 0 ? "|" : "");
+                String figureSymbol = String.format("%s", figure != null ? figure : " ");
+                String figureCell = String.format("%s%2s ", leftFigureWall, figureSymbol);
+                resultLine = resultLine.concat(figureCell);
             }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
-        System.out.println();
+        return resultLine;
     }
 
     private int getCoordinate(final String coordinateName) {
@@ -106,6 +111,8 @@ public class ConsoleView {
     }
 
     private void printSeparator() {
-        System.out.println("~~~~~~~~~~~");
+        for (int i = 0; i < LINE_SIZE; i++) {
+            System.out.print(LINE_CHARACTER);
+        }
     }
 }
