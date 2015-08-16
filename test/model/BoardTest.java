@@ -1,7 +1,13 @@
-
 package model;
 
-/*
+import model.exeptions.AlreadyOccupiedException;
+import model.exeptions.InvalidPointException;
+import org.junit.Test;
+
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.fail;
+import static junit.framework.TestCase.assertNull;
+
 public class BoardTest {
 
     @Test
@@ -101,4 +107,4 @@ public class BoardTest {
             fail();
         } catch (final InvalidPointException e) {}
     }
-}*/
+}
