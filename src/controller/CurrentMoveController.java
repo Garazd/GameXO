@@ -2,9 +2,8 @@ package controller;
 
 import model.Board;
 import model.Figure;
+import model.Point;
 import model.exeptions.InvalidPointException;
-
-import java.awt.*;
 
 public class CurrentMoveController {
 
