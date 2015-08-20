@@ -1,6 +1,5 @@
 package model;
 
-import model.exeptions.AlreadyOccupiedException;
 import model.exeptions.InvalidBoardSizeException;
 import model.exeptions.InvalidPointException;
 
@@ -26,22 +25,21 @@ public class Board {
     }
 
     public Figure getFigure(final Point point) throws InvalidPointException {
-        if (checkPoint(point)) {
+        if (!checkPoint(point)) {
             throw new InvalidPointException();
         }
         return board [point.getX()][point.getY()];
     }
 
-    public void setFigure(final Point point, final Figure figure) throws InvalidPointException,
-            AlreadyOccupiedException {
-        if (checkPoint(point)) {
+    public void setFigure(final Point point, final Figure figure) throws InvalidPointException {
+        if (!checkPoint(point)) {
             throw new InvalidPointException();
         }
         board [point.getX()][point.getY()] = figure;
     }
 
     private boolean checkPoint(final Point point) {
-        return checkCoordinate(point.getX(), boardSize) && checkCoordinate(point.getY(), board[point.getX()].length);
+        return checkCoordinate(point.getX(), board.length) && checkCoordinate(point.getY(), board[point.getX()].length);
     }
 
     private boolean checkCoordinate(final int coordinate, final int MAX_COORDINATE) {
