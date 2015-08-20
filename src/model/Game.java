@@ -2,34 +2,27 @@ package model;
 
 public class Game {
 
-    private static final String DEFAULT_GAME_NAME = "XO";
-
-    private static Player[] players;
-    private static Board board;
-    private static String gameName;
+    private final Player[] players;
+    private final Board board;
+    private final String gameName;
 
     public Game(final Player[] players,
                 final Board board,
                 final String gameName) {
         this.players = players;
         this.board = board;
-
-        if (gameName == null || gameName.isEmpty()) {
-            this.gameName = DEFAULT_GAME_NAME;
-        } else {
-            this.gameName = gameName;
-        }
+        this.gameName = gameName;
     }
 
-    public static Player[] getPlayers() {
+    public Player[] getPlayers() {
         return players;
     }
 
-    public static Board getBoard() {
+    public Board getBoard() {
         return board;
     }
 
-    public static String getGameName() {
+    public String getGameName() {
         return gameName;
     }
 }
